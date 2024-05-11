@@ -1,0 +1,16 @@
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y procps nano curl gnupg apt-transport-https gnupg2 inotify-tools python3-docker python3-setuptools python3-pip
+RUN curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/wazuh.gpg --import && chmod 644 /usr/share/keyrings/wazuh.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+RUN curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
+RUN apt-get update
+RUN echo "deb https://packages.wazuh.com/4.x/apt/ stable main" > /etc/apt/sources.list.d/wazuh.list
+RUN WAZUH_MANAGER="wazuh.manager" apt-get install -y wazuh-agent
+RUN update-rc.d wazuh-agent defaults 95 10
+RUN service wazuh-agent start
+COPY crane.py /crane.py
+RUN apt-get install -y python3
+
+CMD sh -c "service wazuh-agent start; python3 /crane.py; sleep 1;"
+#CMD sh -c "service wazuh-agent start; echo 'xxx'; sleep 1000;"
