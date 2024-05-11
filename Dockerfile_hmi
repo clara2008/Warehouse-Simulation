@@ -2,12 +2,9 @@ FROM ubuntu
 RUN apt-get update
 COPY hmi.py /hmi.py
 RUN apt-get install -y gcc python3-dev musl-dev python3-pip
-#RUN apk add --update py-pip
 
 RUN apt-get update
-#RUN pip install python3-tk
-#RUN apk update python-tk python3-tk
-RUN pip install psycopg2-binary
+RUN pip3 install psycopg2-binary --break-system-packages
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=Europe/London
 RUN apt-get install -y python3-tk
