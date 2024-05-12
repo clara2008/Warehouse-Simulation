@@ -9,7 +9,7 @@ Each simulation container is individually monitored by a Wazuh agent.
 * Dockerfiles and Python files for the simulation components
 * YAML configuration file
 * Wazuh single-node setup + configuration files
-* Files for database deployment
+* Files for creating database tables
 
 ## Requirements
 
