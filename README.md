@@ -7,7 +7,7 @@ Each simulation container is individually monitored by a Wazuh agent.
 ## Contents
 
 * Dockerfiles and Python files for the simulation components
-* YAML configuration files
+* YAML configuration file
 * Wazuh single-node setup + configuration files
 * Files for database deployment
 
@@ -15,7 +15,7 @@ Each simulation container is individually monitored by a Wazuh agent.
 
 * Docker
 * Docker Compose
-* PostgreSQL
+* PostgreSQL (see Installation)
 
 ## Installation
 
