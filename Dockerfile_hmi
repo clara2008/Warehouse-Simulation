@@ -5,8 +5,8 @@ RUN apt-get install -y gcc python3-dev musl-dev python3-pip
 
 RUN apt-get update
 RUN pip3 install psycopg2-binary --break-system-packages
-ENV DEBIAN_FRONTEND noninteractive
-ENV TZ=Europe/London
-RUN apt-get install -y python3-tk
+RUN apt-get install -y python3-tk git
+RUN git clone https://github.com/rdbende/Sun-Valley-ttk-theme.git
+RUN cd Sun-Valley-ttk-theme && python3 setup.py install
 
 CMD sh -c "python3 hmi.py; sleep 1000;"
